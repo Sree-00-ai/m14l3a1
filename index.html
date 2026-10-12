@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort and Reverse Strings</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2ff;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 25px;
+            max-width: 450px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #cccccc;
+        }
+
+        input {
+            width: 85%;
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4f46e5;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            color: #3730a3;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Sort and Reverse Strings</h2>
+
+        <p>Enter a word or names separated by commas:</p>
+
+        <input type="text" id="userInput"
+               placeholder="Example: Riya, Arun, Priya">
+
+        <br>
+
+        <button onclick="sortStrings()">Sort</button>
+        <button onclick="reverseString()">Reverse</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function sortStrings() {
+            const input =
+                document.getElementById("userInput").value;
+
+            if (input.trim() === "") {
+                document.getElementById("result").textContent =
+                    "Please enter some text.";
+                return;
+            }
+
+            // Sort comma-separated names alphabetically
+            const names = input.split(",").map(name => name.trim());
+
+            names.sort((a, b) =>
+                a.localeCompare(b, undefined, { sensitivity: "base" })
+            );
+
+            document.getElementById("result").textContent =
+                "Sorted: " + names.join(", ");
+        }
+
+        function reverseString() {
+            const input =
+                document.getElementById("userInput").value;
+
+            if (input === "") {
+                document.getElementById("result").textContent =
+                    "Please enter some text.";
+                return;
+            }
+
+            // Reverse the characters
+            const reversed = Array.from(input).reverse().join("");
+
+            document.getElementById("result").textContent =
+                "Reversed: " + reversed;
+        }
+    </script>
+
+</body>
+</html>
